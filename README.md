@@ -1,6 +1,6 @@
 # envhealth
 
-[![PyPI version](https://badge.fury.io/py/django-include-apps.svg)](https://pypi.org/project/envhealth/0.1.0/)
+[![PyPI version](https://badge.fury.io/py/envhealth.svg)](https://pypi.org/project/envhealth/0.1.0/)
 [![Downloads](https://pepy.tech/badge/envhealth)](https://pypi.org/project/envhealth/0.1.0/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
