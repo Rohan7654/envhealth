@@ -2,7 +2,7 @@
 
 [![Downloads](https://img.shields.io/pypi/dm/envhealth.svg)](https://pypi.org/project/envhealth/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/envhealth.svg)](https://pypi.org/project/envhealth/)
-[![License](https://img.shields.io/github/license/YOUR_USERNAME/envhealth.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Environment Health Checker for Python Projects
 
