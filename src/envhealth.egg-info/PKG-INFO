@@ -1,3 +1,21 @@
+Metadata-Version: 2.4
+Name: envhealth
+Version: 0.1.0
+Summary: Environment health checker that validates Python runtime, OS, dependencies, variables and system readiness
+Author-email: Rohan <rohanroni2019@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/Rohan7654/envhealth
+Project-URL: Issues, https://github.com/Rohan7654/envhealth/issues
+Keywords: environment,system health,diagnostics,python tooling,debugging
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
 # envhealth
 
 [![Downloads](https://img.shields.io/pypi/dm/envhealth.svg)](https://pypi.org/project/envhealth/)
