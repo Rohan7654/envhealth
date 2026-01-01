@@ -1,8 +1,8 @@
 # envhealth
 
-[![Downloads](https://img.shields.io/pypi/dm/envhealth.svg)](https://pypi.org/project/envhealth/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/envhealth.svg)](https://pypi.org/project/envhealth/)
-[![License](https://img.shields.io/github/license/YOUR_USERNAME/envhealth.svg)](LICENSE)
+[![PyPI version](https://badge.fury.io/py/envhealth.svg)](https://pypi.org/project/envhealth/0.1.0/)
+[![Downloads](https://pepy.tech/badge/envhealth)](https://pypi.org/project/envhealth/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 
 EnvHealth is a powerful Python utility to check **system environment health**.
