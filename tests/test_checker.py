@@ -1,17 +1,14 @@
-from envhealth import EnvironmentChecker
+from envhealth import Checker
 
-def test_python_check():
-    checker = EnvironmentChecker()
-    res = checker.check_python()
-    assert "current_version" in checker.results["python"]
-    assert res in [True, False]
 
-def test_system_check():
-    checker = EnvironmentChecker()
-    checker.check_system()
-    assert "cpu_count" in checker.results["system"]
+def test_full_report_structure():
+    chk = Checker()
+    report = chk.full_report()
 
-def test_gpu_field_exists():
-    checker = EnvironmentChecker()
-    checker.check_gpu()
-    assert "available" in checker.results["gpu"]
+    assert "system" in report
+    assert "cpu" in report
+    assert "memory" in report
+    assert "disk" in report
+    assert "cuda" in report
+    assert "internet" in report
+    assert "proxy" in report

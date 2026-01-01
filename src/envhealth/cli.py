@@ -1,33 +1,36 @@
 import argparse
-from .checker import EnvironmentChecker
-from .reporter import (
-    ConsoleReporter,
-    HTMLReporter,
-    JSONReporter,
-    MarkdownReporter,
-)
+from .checker import Checker
+from .reporter import Reporter
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Environment Health Checker")
-    parser.add_argument("--html", action="store_true", help="Generate HTML report")
-    parser.add_argument("--json", action="store_true", help="Generate JSON report")
-    parser.add_argument("--markdown", action="store_true", help="Generate Markdown report")
+    parser = argparse.ArgumentParser(description="EnvHealth System Diagnostics")
+
+    parser.add_argument("--json", action="store_true", help="Output report in JSON")
+    parser.add_argument("--html", action="store_true", help="Output report in HTML format")
+    parser.add_argument("--pdf", action="store_true", help="Export report as PDF")
+
     args = parser.parse_args()
 
-    checker = EnvironmentChecker()
-    results = checker.run_all()
-
-    ConsoleReporter().render(results)
-
-    if args.html:
-        path = HTMLReporter().save(results)
-        print(f"\nHTML report saved at: {path}")
+    chk = Checker()
+    data = chk.full_report()
+    rep = Reporter(data)
 
     if args.json:
-        path = JSONReporter().save(results)
-        print(f"JSON report saved at: {path}")
+        print(rep.to_json())
+        return
 
-    if args.markdown:
-        path = MarkdownReporter().save(results)
-        print(f"Markdown report saved at: {path}")
+    if args.html:
+        html = rep.to_html()
+        fname = "envhealth_report.html"
+        with open(fname, "w") as f:
+            f.write(html)
+        print(f"HTML report generated: {fname}")
+        return
+
+    if args.pdf:
+        fname = rep.to_pdf()
+        print(f"PDF report generated: {fname}")
+        return
+
+    print(rep.pretty_text())

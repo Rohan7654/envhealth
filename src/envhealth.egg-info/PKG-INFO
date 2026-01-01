@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: envhealth
-Version: 0.1.0
+Version: 0.1.1
 Summary: Environment health checker that validates Python runtime, OS, dependencies, variables and system readiness
 Author-email: Rohan <rohanroni2019@gmail.com>
 License: MIT
@@ -14,6 +14,9 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: psutil
+Requires-Dist: requests
+Requires-Dist: reportlab
 Dynamic: license-file
 
 # envhealth
@@ -22,22 +25,26 @@ Dynamic: license-file
 [![Python Versions](https://img.shields.io/pypi/pyversions/envhealth.svg)](https://pypi.org/project/envhealth/)
 [![License](https://img.shields.io/github/license/YOUR_USERNAME/envhealth.svg)](LICENSE)
 
-Environment Health Checker for Python Projects
 
+EnvHealth is a powerful Python utility to check **system environment health**.
 ---
 
 ## Features
-- Detects Python version issues
-- Detects dependency conflicts
-- Checks RAM, CPU, OS info
-- Detects GPU availability
-- Generates:
-  - Console Report  
-  - HTML Report  
-  - JSON Report  
-  - Markdown Report  
-- Colored terminal output  
-- Zero configuration 
+- Operating System details  
+- CPU usage and core stats  
+- RAM usage  
+- Disk usage  
+- CUDA GPU availability + performance benchmark  
+- Internet connection diagnostics  
+- Proxy configuration detection
+
+Supports multiple report formats:
+
+- Pretty terminal output
+- JSON
+- HTML
+- PDF
+
 
 ---
 
@@ -57,58 +64,98 @@ pip install envhealth
     ```python
         envhealth --html
         envhealth --json
-        envhealth --markdown
+        envhealth --pdf
     ```
-- Combine multiple formats:
-    ```python
-        envhealth --html --json --markdown
-    ```
+
 ## Programatic Usage
 - Use ``envhealth`` in your Python scripts:
     ```python
-    from envhealth import EnvironmentChecker, ConsoleReporter, HTMLReporter, JSONReporter, MarkdownReporter
+    from envhealth import Checker, Reporter
 
-    # Run all checks
-    checker = EnvironmentChecker()
-    results = checker.run_all()
+    chk = Checker()
+    data = chk.full_report()
 
-    # Console output
-    ConsoleReporter().render(results)
-
-    # Save reports
-    HTMLReporter().save(results, path="env_report.html")
-    JSONReporter().save(results, path="env_report.json")
-    MarkdownReporter().save(results, path="env_report.md")
+    rep = Reporter(data)
+    print(rep.pretty_text())
+    rep.to_pdf()
 
     ```
 # Sample Output
 ## Console Output
 ```yaml
-    === PYTHON ENVIRONMENT HEALTH REPORT ===
-    Generated: 2025-01-01 18:22:11
-    ----------------------------------------
+    === SYSTEM ===
+    os: Windows
+    os_version: 10.0.19045
+    hostname: PC
+    architecture: AMD64
+    processor: Intel(R) Core(TM) i5
+    python_version: 3.11
 
-    Python:
-    current_version: 3.11.7
-    minimum_required: 3.8
-    status: OK
+    === CPU ===
+    physical_cores: 4
+    total_cores: 8
+    cpu_usage_percent: 12.5
 
-    System:
-    os: Linux
-    os_release: 6.6.10
-    cpu_count: 12
-    ram_gb: 16.0
+    === MEMORY ===
+    total_gb: 16.0
+    available_gb: 9.1
+    used_percent: 43
 
-    GPU:
-    Available: False
+    === DISK ===
+    total_gb: 512
+    used_gb: 320
+    free_gb: 192
+    used_percent: 62.5
 
-    Dependency Conflicts:
-    None
+    === CUDA ===
+    cuda_available: True
+    gpu_name: NVIDIA RTX 3060
+    benchmark_time_sec: 0.1182
 
-    Warnings:
-    None
+    === INTERNET ===
+    connected: True
+    status_code: 200
+
+    === PROXY ===
+    proxy_enabled: False
 
 ```
+## JSON Output
+```json
+    {
+    "system": {
+        "os": "Windows",
+        "hostname": "PC"
+    },
+    "cpu": {
+        "physical_cores": 4,
+        "cpu_usage_percent": 11.3
+    },
+    "cuda": {
+        "cuda_available": true,
+        "gpu_name": "RTX 3060"
+    },
+    "internet": {
+        "connected": true
+    }
+    }
+
+```
+## HTML Output
+Produces file ```envhealth_report.html``` which contains
+```html
+    <h1>EnvHealth Report</h1>
+    <h2>SYSTEM</h2>
+    <li><b>os</b>: Windows</li>
+    <li><b>hostname</b>: PC</li>
+    ...
+
+```
+# Support
+Supported Platforms: 
+* Windows
+* Linux
+* macOS
 
 # TODO
 - [ ] Roadmap
