@@ -3,6 +3,7 @@ MANIFEST.in
 README.md
 pyproject.toml
 src/envhealth/__init__.py
+src/envhealth/__main__.py
 src/envhealth/checker.py
 src/envhealth/cli.py
 src/envhealth/cuda_check.py

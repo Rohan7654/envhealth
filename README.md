@@ -137,11 +137,10 @@ Supported Platforms:
 * macOS
 
 # TODO
-- [ ] Roadmap
-- [ ] CUDA performance check
-- [ ] Internet & proxy diagnostics
-- [ ] PDF export
-- [ ] GUI dashboard / VS Code integration
+- [x] CUDA performance check
+- [x] Internet & proxy diagnostics
+- [x] PDF export
+- [x] VS Code integration
 
 ## License
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
