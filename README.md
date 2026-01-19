@@ -373,6 +373,12 @@ Supported Platforms:
 * Linux
 * macOS
 
+# TODO
+- [x] CUDA performance check
+- [x] Internet & proxy diagnostics
+- [x] PDF export
+- [ ] VS Code integration
+
 ## License
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
