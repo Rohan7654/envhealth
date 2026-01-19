@@ -1,0 +1,92 @@
+# ===============================
+# Python bytecode / cache
+# ===============================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ===============================
+# Virtual environments
+# ===============================
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# ===============================
+# Packaging / build artifacts
+# ===============================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ===============================
+# Installer logs
+# ===============================
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ===============================
+# Unit test / coverage reports
+# ===============================
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+
+# ===============================
+# Logs
+# ===============================
+*.log
+
+# ===============================
+# OS-specific files
+# ===============================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# ===============================
+# IDE / Editor files
+# ===============================
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# ===============================
+# EnvHealth generated reports
+# ===============================
+envhealth_report.json
+envhealth_report.html
+envhealth_report.pdf
+
+# ===============================
+# Temporary / misc
+# ===============================
+*.tmp
+*.bak
+*.swp
+
+# ===============================
+# Credentials / tokens
+# ===============================
+.pypirc
+.env
+.env.*
+
+# ===============================
+# GitHub Actions artifacts
+# ===============================
+*.sarif

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "envhealth"
-version = "0.1.2"
+version = "1.0.0"
 description = "Environment health checker that validates Python runtime, OS, dependencies, variables and system readiness"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -20,13 +20,26 @@ dependencies = [
   "reportlab",
 ]
 
-keywords = ["environment", "system health", "diagnostics", "python tooling", "debugging"]
+keywords = [
+  "environment",
+  "system health",
+  "diagnostics",
+  "python tooling",
+  "debugging"
+]
 
 classifiers = [
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Topic :: System :: Monitoring",
 ]
 
 [project.urls]

@@ -1,36 +1,41 @@
 import argparse
+import json
+from pathlib import Path
+
 from .checker import Checker
 from .reporter import Reporter
 
 
 def main():
-    parser = argparse.ArgumentParser(description="EnvHealth System Diagnostics")
+    parser = argparse.ArgumentParser(
+        description="EnvHealth – Python Environment Health Diagnostics"
+    )
 
-    parser.add_argument("--json", action="store_true", help="Output report in JSON")
-    parser.add_argument("--html", action="store_true", help="Output report in HTML format")
-    parser.add_argument("--pdf", action="store_true", help="Export report as PDF")
+    parser.add_argument("--json", action="store_true", help="Save JSON report")
+    parser.add_argument("--html", action="store_true", help="Save HTML report")
+    parser.add_argument("--pdf", action="store_true", help="Save PDF report")
+    parser.add_argument("--path", help="Custom path to save reports")
+    parser.add_argument("--fail-on", choices=["minor", "major"], help="CI exit control")
 
     args = parser.parse_args()
 
-    chk = Checker()
-    data = chk.full_report()
-    rep = Reporter(data)
+    checker = Checker()
+    data = checker.full_report()
+    reporter = Reporter(data)
+
+    save_path = Path(args.path) if args.path else None
 
     if args.json:
-        print(rep.to_json())
-        return
+        reporter.save_json(save_path)
+        print(json.dumps(data, indent=2))
 
     if args.html:
-        html = rep.to_html()
-        fname = "envhealth_report.html"
-        with open(fname, "w") as f:
-            f.write(html)
-        print(f"HTML report generated: {fname}")
-        return
+        reporter.save_html(save_path)
 
     if args.pdf:
-        fname = rep.to_pdf()
-        print(f"PDF report generated: {fname}")
-        return
+        reporter.save_pdf(save_path)
 
-    print(rep.pretty_text())
+    if not args.json and not args.html and not args.pdf:
+        print(reporter.pretty_text())
+
+    raise SystemExit(checker.exit_code(args.fail_on))
